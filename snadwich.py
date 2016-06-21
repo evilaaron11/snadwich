@@ -16,6 +16,8 @@ def performOp(a, b, op):
     else:
         raise ValueError("invalid expression")
 
+    return c
+
 def parseTokens(currLine):
     firstInt = True
     tokens = currLine.split( )
