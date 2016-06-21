@@ -13,10 +13,10 @@ def performOp(a, b, op):
         c = a % b
     elif "ex" == op: # **
         c = a ** b
-    else
+    else:
         raise ValueError("invalid expression")
 
-def parseTokens(currLine, words):
+def parseTokens(currLine):
     firstInt = True
     tokens = currLine.split( )
     for i in tokens:
@@ -29,7 +29,7 @@ def parseTokens(currLine, words):
         else:
             operation = i
 
-    performOp(j, k, operation)
+    print(performOp(j, k, operation))
 
 
 def parseLine(currLine):
@@ -39,11 +39,22 @@ def parseLine(currLine):
         print(i)
 
 def main():
-    words =
+    currFile = None
     try:
         #parseLine(sys.argv[1])
-        parseTokens()
+        #parseTokens()
+        currFile = open(sys.argv[1])
     except IndexError:
         print("Note enough arguments.")
+        return
+
+    line = currFile.readline()
+    while line:
+        try:
+            parseTokens(line)
+        except ValueError:
+            print("Invalid operand")
+        line = currFile.readline()
+    currFile.close()
 
 if __name__ == "__main__": main()
